@@ -24,7 +24,7 @@ public class Library extends Building{
   }
 
   public String removeTitle(String title){
-    if (this.collection.containsKey(title) && this.collection.get(title)==true){
+    if (containsTitle(title) && isAvailable(title)){
       this.collection.remove(title);
     } else{
       System.out.println("this book cannot be removed");
@@ -33,7 +33,7 @@ public class Library extends Building{
   } 
   
   public void checkOut(String title){
-    if (this.collection.containsKey(title) && this.collection.get(title)==true){
+    if (containsTitle(title) && isAvailable(title)){
       this.collection.replace(title,false);
     } else{
       System.out.println("this book cannot be checked out");
@@ -41,19 +41,50 @@ public class Library extends Building{
   }
 
   public void returnBook(String title){
-    if (this.collection.containsKey(title) && this.collection.get(title)==false){
+    if (containsTitle(title) && this.collection.get(title)==false){
       this.collection.replace(title,true);
     } else{
       System.out.println("this book cannot be returned");
     }
   }
 
+  public boolean containsTitle(String title){
+    return this.collection.containsKey(title);
+  } 
+
+  // returns true if the title is currently available, false otherwise
+  public boolean isAvailable(String title){
+    return this.collection.get(title)==true;
+
+  } 
+
+  // prints out the entire collection in an easy-to-read way (including checkout status)
+  public void printCollection(){
+    for (String key : this.collection.keySet()){
+      boolean is=isAvailable(key);
+      if (is){
+        String isit= " is avaliable";
+        System.out.println(key+isit);
+      } else {
+        String isit= " is not avaliable";
+        System.out.println(key+isit);
+      }
+    }
+  } 
+
   public static void main(String[] args) {
     Library mylib= new Library("nielson","123 lane",4);
     mylib.addTitle("meow");
     System.out.println(mylib.collection);
-    mylib.removeTitle("meow");
-    System.out.println(mylib.collection);
+    // mylib.removeTitle("meow");
+    mylib.checkOut("meow");
+    System.out.println(mylib.collection.get("meow"));
+    mylib.returnBook("meow");
+    mylib.addTitle("arf");
+    mylib.checkOut("arf");
+    System.out.println(mylib.collection.get("meow"));
+    System.out.println(mylib.containsTitle("meowy"));
+    mylib.printCollection();
   }
   
 }

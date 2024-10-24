@@ -22,11 +22,11 @@ ___YES__ 1 pt: The `House` class implements the requested additional methods (`m
 
 ### Level 2: `Library.java` (3 pts)
 
-_____ 1 pt: The `Library` class includes the requested attributes
+___Yes__ 1 pt: The `Library` class includes the requested attributes
 
-_____ 1 pt: The `Library` class implements the requested methods to add / remove or check out / return titles
+___YES__ 1 pt: The `Library` class implements the requested methods to add / remove or check out / return titles
 
-_____ 1 pt: The `Library` class implements the requested additional methods (`containsTitle(...)`, `isAvailable(...)`, and `printCollection()`)
+___YES__ 1 pt: The `Library` class implements the requested additional methods (`containsTitle(...)`, `isAvailable(...)`, and `printCollection()`)
 
 ### Level 3: `Cafe.java` (3 pts)
 
