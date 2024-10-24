@@ -12,6 +12,12 @@ public class Library extends Building{
   private Hashtable<String, Boolean> collection;
 
   //constructor 
+  /**
+   * constructor for the library that extends the building class
+   * @param name name of the building 
+   * @param address address of building
+   * @param nFloors number of floors 
+   */
   public Library(String name, String address, int nFloors) {
     super(name, address,nFloors);
     this.collection= new Hashtable<String, Boolean>(0);
@@ -19,10 +25,19 @@ public class Library extends Building{
   }
 
   //methods for the library class
+  /**
+   * method that adds a book to the collection 
+   * @param title title of the book
+   */
   public void addTitle(String title){
     this.collection.put(title,true);
   }
 
+  /**
+   * function that removes a book from the collection 
+   * @param title title of the book
+   * @return the title of the book that was removed
+   */
   public String removeTitle(String title){
     if (containsTitle(title) && isAvailable(title)){
       this.collection.remove(title);
@@ -32,6 +47,10 @@ public class Library extends Building{
     return title;
   } 
   
+  /**
+   * method that checks out a book by changing its value to false 
+   * @param title title of the book
+   */
   public void checkOut(String title){
     if (containsTitle(title) && isAvailable(title)){
       this.collection.replace(title,false);
@@ -40,6 +59,10 @@ public class Library extends Building{
     }
   }
 
+  /**
+   * method that returns a vook to the collection by changing its value to true 
+   * @param title title of the book
+   */
   public void returnBook(String title){
     if (containsTitle(title) && this.collection.get(title)==false){
       this.collection.replace(title,true);
@@ -48,21 +71,31 @@ public class Library extends Building{
     }
   }
 
+  /**
+   * method that checks if a book is present in the collection 
+   * @param title title of the book
+   * @return boolean representing if a title is contained in the collection
+   */
   public boolean containsTitle(String title){
     return this.collection.containsKey(title);
   } 
 
-  // returns true if the title is currently available, false otherwise
+  /**
+   * methid that checks if a book is avaliable to be checked out 
+   * @param title title of the book 
+   * @return returns true if the title is currently available, false otherwise
+   */
   public boolean isAvailable(String title){
     return this.collection.get(title)==true;
 
   } 
 
-  // prints out the entire collection in an easy-to-read way (including checkout status)
+  /**
+   * prints out the entire collection in an easy-to-read way (including checkout status)
+   */
   public void printCollection(){
     for (String key : this.collection.keySet()){
-      boolean is=isAvailable(key);
-      if (is){
+      if (isAvailable(key)){
         String isit= " is avaliable";
         System.out.println(key+isit);
       } else {
